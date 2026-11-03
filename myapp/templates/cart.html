@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cart</title>
+</head>
+<body>
+    <h1>Your Shopping Cart</h1>
+    {% if cart_items %}
+        <table border="1">
+            <tr><th>Product</th><th>Quantity</th><th>Subtotal</th></tr>
+            {% for item in cart_items %}
+            <tr>
+                <td>{{ item.product.name }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>${{ item.subtotal }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <h3>Total: ${{ total_price }}</h3>
+        <br><br>
+<a href="{% url 'checkout' %}" style="background-color: green; color: white; padding: 10px 20px; text-decoration: none; font-weight: bold; display: inline-block;">Proceed to Checkout</a>
+    {% else %}
+        <p>Your cart is empty.</p>
+    {% endif %}
+    <br>
+    <a href="{% url 'index' %}">Back to Shop</a>
+</body>
+</html>
